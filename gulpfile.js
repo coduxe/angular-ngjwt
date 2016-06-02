@@ -14,12 +14,12 @@ gulp.task('clean', function () {
 * build
 */
 gulp.task('build', ['clean'], function() {
-  // Angular-jwt js
-  gulp.src('src/angular-jwt.js')
+  // angular-ngjwt js
+  gulp.src('src/angular-ngjwt.js')
   .pipe(gulp.dest('dist'));
 
   // Minified js
-  gulp.src('src/angular-jwt.js')
+  gulp.src('src/angular-ngjwt.js')
   .pipe(uglify({preserveComments: 'all'}))
   .pipe(rename({
     suffix: '.min'
