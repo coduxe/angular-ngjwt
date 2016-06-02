@@ -1,14 +1,14 @@
-# angular-jwt
+# angular-ngjwt
 
 A very basic module to manage JWT authentication.
 
 ## Quick start
 
-+ Install angular-jwt with [Bower](https://github.com/bower/bower).
++ Install angular-ngjwt with [Bower](https://github.com/bower/bower).
 
 >
 ```bash
-$ bower install angular-jwt --save
+$ bower install angular-ngjwt --save
 ```
 
 + Include the required libraries in your `index.html`:
@@ -16,14 +16,14 @@ $ bower install angular-jwt --save
 >
 ``` html
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+<script src="bower_components/angular-ngjwt/dist/angular-ngjwt.min.js"></script>
 ```
 
-+ Inject the `angular-jwt` module into your app:
++ Inject the `angular-ngjwt` module into your app:
 
 >
 ``` js
-angular.module('myApp', ['angular-jwt']);
+angular.module('myApp', ['angular-ngjwt']);
 ```
 
 ## Change default options:
@@ -31,7 +31,7 @@ angular.module('myApp', ['angular-jwt']);
 
 >
 ``` js
-angular.module('myApp', ['angular-jwt'])
+angular.module('myApp', ['angular-ngjwt'])
 .config(['ngJwtProvider', function(ngJwtProvider) {
   angular.extend(ngJwtProvider.defaults, {
     localStorageKey: '$ngJwt_token', // The localstorage key is where the JWT token is saved (string)
@@ -47,7 +47,7 @@ angular.module('myApp', ['angular-jwt'])
 
 >
 ``` js
-angular.module('myApp', ['angular-jwt'])
+angular.module('myApp', ['angular-ngjwt'])
 .run(['$rootScope', function($rootScope) {
   $rootScope.$on('$errorCode', function(event, response) {
     // [ your code here ]
@@ -59,7 +59,7 @@ angular.module('myApp', ['angular-jwt'])
 
 >
 ``` js
-angular.module('myApp', ['angular-jwt'])
+angular.module('myApp', ['angular-ngjwt'])
 .controller('SomeCtrl', ['ngJwt', function(ngJwt) {
   ngJwt.setToken("[ Your Token ]"); // This method sets the token that will be sent in all your http requests.
   ngJwt.getToken(); // This method return the stored token.

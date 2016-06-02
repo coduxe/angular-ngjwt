@@ -1,7 +1,7 @@
 /**
-* angular-jwt
+* angular-ngjwt
 * @version v1.0.0
-* @link https://github.com/coduxe/angular-jwt
+* @link https://github.com/coduxe/angular-ngjwt
 * @author Coduxe, https://github.com/coduxe
 * @license MIT License, http://www.opensource.org/licenses/MIT
 */
@@ -10,7 +10,7 @@
 
 if (!angular) throw new TypeError("AngularJs is required");
 
-angular.module("angular-jwt", [])
+angular.module("angular-ngjwt", [])
 
 .config(['$httpProvider', 'ngJwtProvider', function($httpProvider, ngJwtProvider) {
   $httpProvider.interceptors.push(['$q', '$rootScope', function ($q, $rootScope) {

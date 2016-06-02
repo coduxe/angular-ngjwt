@@ -1,21 +1,21 @@
 {
-  "name": "angular-jwt",
+  "name": "angular-ngjwt",
   "version": "1.0.0",
   "description": "A very basic module to manage JWT authentication.",
-  "main": "src/angular-jwt.js",
+  "main": "src/angular-ngjwt.js",
   "scripts": {
     "build": "node_modules/.bin/gulp build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coduxe/angular-jwt.git"
+    "url": "git+https://github.com/coduxe/angular-ngjwt.git"
   },
   "author": "Coduxe",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/coduxe/angular-jwt/issues"
+    "url": "https://github.com/coduxe/angular-ngjwt/issues"
   },
-  "homepage": "https://github.com/coduxe/angular-jwt#readme",
+  "homepage": "https://github.com/coduxe/angular-ngjwt#readme",
   "dependencies": {},
   "devDependencies": {
     "del": "^2.2.0",
