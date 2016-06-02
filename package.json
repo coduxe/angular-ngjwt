@@ -1,6 +1,6 @@
 {
   "name": "angular-ngjwt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A very basic module to manage JWT authentication.",
   "main": "src/angular-ngjwt.js",
   "scripts": {
