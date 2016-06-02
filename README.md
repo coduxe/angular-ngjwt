@@ -4,14 +4,14 @@ A very basic module to manage JWT authentication.
 
 ## Quick start
 
-### Install angular-jwt with [Bower](https://github.com/bower/bower).
++ Install angular-jwt with [Bower](https://github.com/bower/bower).
 
 >
 ```bash
 $ bower install angular-jwt --save
 ```
 
-### Include the required libraries in your `index.html`:
++ Include the required libraries in your `index.html`:
 
 >
 ``` html
@@ -19,15 +19,15 @@ $ bower install angular-jwt --save
 <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
 ```
 
-### Inject the `angular-jwt` module into your app:
++ Inject the `angular-jwt` module into your app:
 
 >
 ``` js
 angular.module('myApp', ['angular-jwt']);
 ```
 
-### Change default options:
-you can override global defaults for the plugin with ngJwtProvider.defaults
+## Change default options:
++ You can override global defaults for the plugin with ngJwtProvider.defaults
 
 >
 ``` js
@@ -42,8 +42,8 @@ angular.module('myApp', ['angular-jwt'])
 }]);
 ```
 
-### '$errorCode' event listener:
-This event will be triggered whenever a http error response contains any of the error codes provided within the ngJwtProvider errorCodes options
+## '$errorCode' event listener:
++ This event will be triggered whenever a http error response contains any of the error codes provided within the ngJwtProvider errorCodes options
 
 >
 ``` js
@@ -55,7 +55,7 @@ angular.module('myApp', ['angular-jwt'])
 }]);
 ```
 
-### Usage
+## Usage
 
 >
 ``` js
@@ -68,7 +68,7 @@ angular.module('myApp', ['angular-jwt'])
 }]);
 ```
 
-### Authors
+## Authors
 
 - [**Ibán Dominguez Noda**](https://github.com/ibandominguez)
 - [**Dariel González Rodríguez**](https://github.com/DarielGonzalez)
