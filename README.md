@@ -4,14 +4,14 @@ A very basic module to manage JWT authentication.
 
 ## Quick start
 
-+ Install angular-jwt with [Bower](https://github.com/bower/bower).
+### Install angular-jwt with [Bower](https://github.com/bower/bower).
 
 >
 ```bash
 $ bower install angular-jwt --save
 ```
 
-+ Include the required libraries in your `index.html`:
+### Include the required libraries in your `index.html`:
 
 >
 ``` html
@@ -19,14 +19,14 @@ $ bower install angular-jwt --save
 <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
 ```
 
-+ Inject the `angular-jwt` module into your app:
+### Inject the `angular-jwt` module into your app:
 
 >
 ``` js
 angular.module('myApp', ['angular-jwt']);
 ```
 
-+ Change default options:
+### Change default options:
 you can override global defaults for the plugin with ngJwtProvider.defaults
 
 >
@@ -42,7 +42,7 @@ angular.module('myApp', ['angular-jwt'])
 }]);
 ```
 
-+ '$errorCode' event listener:
+### '$errorCode' event listener:
 This event will be triggered whenever a http error response contains any of the error codes provided within the ngJwtProvider errorCodes options
 
 >
@@ -55,25 +55,22 @@ angular.module('myApp', ['angular-jwt'])
 }]);
 ```
 
-+ Usage
+### Usage
 
 >
 ``` js
 angular.module('myApp', ['angular-jwt'])
 .controller('SomeCtrl', ['ngJwt', function(ngJwt) {
   ngJwt.setToken("[ Your Token ]"); // This method sets the token that will be sent in all your http requests.
-
   ngJwt.getToken(); // This method return the stored token.
-
   ngJwt.getDecodedInfo(); // This method return the token encoded info.
-
   ngJwt.removeToken(); // This method remove the stored token.
 }]);
 ```
 
-+ Authors
+### Authors
 
-[**Ibán Dominguez Noda**](https://github.com/ibandominguez)
-[**Dariel González Rodríguez**](https://github.com/DarielGonzalez)
-[**Óliver Grisha Lorenzo Felipe**](https://github.com/oliverGrisha)
-[**Ayoze Vera Arbelo**](https://github.com/AyozeVera)
+- [**Ibán Dominguez Noda**](https://github.com/ibandominguez)
+- [**Dariel González Rodríguez**](https://github.com/DarielGonzalez)
+- [**Óliver Grisha Lorenzo Felipe**](https://github.com/oliverGrisha)
+- [**Ayoze Vera Arbelo**](https://github.com/AyozeVera)
