@@ -68,6 +68,15 @@ angular.module('myApp', ['angular-ngjwt'])
 }]);
 ```
 
+## Running the demo
+
+>
+``` sh
+git clone https://github.com/coduxe/angular-ngjwt.git
+cd angular-ngjwt
+php -S localhost:9000 # Serve the root directory using php or any other service
+```
+
 ## Authors
 
 - [**Ibán Dominguez Noda**](https://github.com/ibandominguez)
