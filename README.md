@@ -74,7 +74,7 @@ angular.module('myApp', ['angular-ngjwt'])
 ``` sh
 git clone https://github.com/coduxe/angular-ngjwt.git
 cd angular-ngjwt
-php -S localhost:9000 # Serve the root directory using php or any other service
+php -S localhost:9000 # Visit your browser at http://localhost:9000/demo
 ```
 
 ## Authors
