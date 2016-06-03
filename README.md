@@ -70,11 +70,13 @@ angular.module('myApp', ['angular-ngjwt'])
 
 ## Running the demo
 
++ Keep in mind you need to serve the demo, for this example we are use php -S
+
 >
 ``` sh
 git clone https://github.com/coduxe/angular-ngjwt.git
 cd angular-ngjwt
-php -S localhost:9000 # Visit your browser at http://localhost:9000/demo
+php -S localhost:9000 # go to http://localhost:9000/demo
 ```
 
 ## Authors
