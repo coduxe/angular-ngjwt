@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular Ngjwt Demo</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="AngularNgJwtDemo" class="container">
+    <h1 class="page-header">Taiga Login - Angular Ngjwt Demo</h1>
+
+    <p class="lead">
+      Basic example using Angular Ngjwt to log into your <a href="https://taiga.io/">Taiga</a> account. In order to
+      run this example you must hold a valid <b>Taiga</b> account.
+    </p>
+
+    <p class="lead">
+      Try out the different requests before and after login, for further details have a look at the source code.
+    </p>
+
+    <div ng-controller="DemoCtrl" class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <h4 class="clearfix">
+              <span class="pull-left label" ng-class="ngJwt.getToken() ? 'label-success' : 'label-danger'">
+                {{ ngJwt.getToken() ? 'logged in' : 'logged out' }}
+              </span>
+              <span class="glyphicon glyphicon-circle-arrow-up"></span> Taiga Jwt Auth
+              <span ng-if="ngJwt.getToken()" class="pull-right glyphicon glyphicon-log-out" ng-click="removeToken()"></span>
+            </h4>
+          </div>
+
+          <div class="panel-body">
+            <form class="form-inline" ng-submit="submit()">
+              <div class="form-group">
+                <input name="username" type="text" class="form-control" ng-model="form.username" placeholder="Your username">
+              </div>
+              <div class="form-group">
+                <input name="password" type="password" class="form-control" ng-model="form.password" placeholder="Your password">
+              </div>
+              <button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-send"></span>
+                Submit
+              </button>
+            </form>
+          </div>
+
+          <div class="panel-heading text-center">
+            <h4><span class="glyphicon glyphicon-circle-arrow-up"></span> Request</h4>
+          </div>
+
+          <div class="panel-body">
+            <p class="alert" ng-class="ngJwt.getToken() ? 'alert-success' : 'alert-warning'">
+              Requesting {{ ngJwt.getToken() ? 'with' : 'without' }} Token
+            </p>
+
+            <ul class="list-group">
+              <li class="list-group-item">
+                <span class="label label-success">Public</span>
+                {{ apiUrl }}/projects
+                <button class="btn btn-default" ng-click="makeRequest('/projects')">
+                  <span class="glyphicon glyphicon-send"></span>
+                </button>
+              </li>
+              <li class="list-group-item">
+                <span class="label label-danger">Private</span>
+                {{ apiUrl }}/users/me
+                <button class="btn btn-default" ng-click="makeRequest('/users/me')">
+                  <span class="glyphicon glyphicon-send"></span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <h4><span class="glyphicon glyphicon-circle-arrow-down"></span> Response</h4>
+          </div>
+          <div class="panel-body lead">
+            <p ng-if="responseCode" ng-class="{ 'alert-danger': responseCode.toString().indexOf('4') > -1 }" class="alert alert-success text-center">
+              {{ responseCode }} status code
+            </p>
+            <pre ng-if="response">{{ response | json }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="../dist/angular-ngjwt.min.js"></script>
+    <script>
+      var app = angular.module('AngularNgJwtDemo', ['angular-ngjwt']);
+
+      // module configuration
+      app.config(['ngJwtProvider', function(ngJwtProvider) {
+        angular.extend(ngJwtProvider.defaults, {
+          localStorageKey: '$ngJwt_token', // The localstorage key is where the JWT token is saved (string)
+          separatedCharacter: ':', // The character that separates each part of the JWT token (string)
+          errorCodes: [401, 403], // The array of status codes that you want the '$errorCode' event to be trigger with (array of integer)
+          removeTokenOnError: true // If true, the JWT token will be removed when the '$errorCode' event is triggered (boolean)
+        });
+      }]);
+
+      // controller usage
+      app.controller('DemoCtrl', ['$scope', '$http', 'ngJwt', function($scope, $http, ngJwt) { window.ngJwt = ngJwt;
+        $scope.apiUrl = 'https://api.taiga.io/api/v1/';
+        $scope.form = { type: 'normal' };
+        $scope.ngJwt = ngJwt;
+
+        // logs into Taiga and retrieves
+        // the user along with its auth token
+        // set the token on success response
+        $scope.submit = function() {
+          $http.post($scope.apiUrl + 'auth', $scope.form)
+            .success(function(res, code) {
+              ngJwt.setToken(res.auth_token);
+              handleRes(res, code);
+            })
+            .error(handleRes);
+        };
+
+        // if the token has been set
+        // angular-ngjwt will add the Authorization header
+        // in all http requests
+        $scope.makeRequest = function(endpoint, data) {
+          if (!endpoint) {
+            return;
+          }
+
+          $http.get($scope.apiUrl + endpoint, data)
+            .success(handleRes)
+            .error(handleRes);
+        };
+
+        // Removes the token
+        $scope.removeToken = function() {
+          ngJwt.removeToken();
+        };
+
+        // print response to the UI
+        function handleRes(res, code) {
+          $scope.response = res;
+          $scope.responseCode = code;
+        };
+      }]);
+
+      // Listen for the '$errorCode' whenever an error
+      // response contains any of the error codes defined in the
+      // configuration provider
+      app.run(['$rootScope', function($rootScope) {
+        $rootScope.$on('$errorCode', function(event, response) {
+          alert(angular.toJson(response));
+        });
+      }]);
+    </script>
+  </body>
+</html>
