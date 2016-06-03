@@ -117,7 +117,7 @@
       }]);
 
       // controller usage
-      app.controller('DemoCtrl', ['$scope', '$http', 'ngJwt', function($scope, $http, ngJwt) { window.ngJwt = ngJwt;
+      app.controller('DemoCtrl', ['$scope', '$http', 'ngJwt', function($scope, $http, ngJwt) {
         $scope.apiUrl = 'https://api.taiga.io/api/v1/';
         $scope.form = { type: 'normal' };
         $scope.ngJwt = ngJwt;
