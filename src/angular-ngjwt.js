@@ -1,6 +1,6 @@
 /**
 * angular-ngjwt
-* @version v1.0.2
+* @version v1.0.3
 * @link https://github.com/coduxe/angular-ngjwt
 * @author Coduxe, https://github.com/coduxe
 * @license MIT License, http://www.opensource.org/licenses/MIT
