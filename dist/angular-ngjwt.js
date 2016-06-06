@@ -1,6 +1,6 @@
 /**
 * angular-ngjwt
-* @version v1.0.2
+* @version v1.0.4
 * @link https://github.com/coduxe/angular-ngjwt
 * @author Coduxe, https://github.com/coduxe
 * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -57,7 +57,7 @@ angular.module("angular-ngjwt", [])
       },
       'getDecodedInfo': function() {
         try {
-          return angular.fromJson(atob(ngJwtFunctions.getToken().split(self.defaults.separatedCharacter)[1]));
+          return angular.fromJson(atob(ngJwtFunctions.getToken().split(self.defaults.separatedCharacter)[0]));
         } catch(e) {
           return null;
         }
